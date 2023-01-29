@@ -1,0 +1,9 @@
+---
+Name: mailjetmailer
+After: emailconfig
+---
+
+SilverStripe\Core\Injector\Injector:
+  SilverStripe\Control\Email\Mailer:
+    class: Firesphere\Mailjet\Service\MailjetMailer
+
