@@ -53,7 +53,7 @@ class MailjetMailer implements Mailer
      * @param array|Email $email
      * @return bool
      */
-    public function send($email)
+    public function send($email): bool
     {
         if (!is_iterable($email)) {
             $email = [$email];
