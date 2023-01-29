@@ -61,6 +61,27 @@ SilverStripe\Core\Injector\Injector:
       - false
 ```
 
+### Use SandboxMode
+
+Another option to avoid emails actively being sent, is using SandboxMode.
+
+This will go through the entire process of Mailjet, except that Mailjet will not
+actively send the emails, but respond as if it did.
+
+Ways to set Sandbox mode:
+
+```php
+$mailer = (new \Firesphere\Mailjet\Service\MailjetMailer())->setSandbox(true);
+```
+
+```yaml
+SilverStripe\Core\Injector\Injector:
+  Firesphere\Mailjet\Service\MailjetMailer:
+    constructor:
+      - true
+      - true   
+```
+
 ## Advanced usage
 
 Mailjet allows to send multiple emails in a single request.

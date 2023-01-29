@@ -26,9 +26,15 @@ class MailjetMailer implements Mailer
      */
     protected $send;
 
-    public function __construct($send = true)
+    /**
+     * @var bool
+     */
+    protected $sandbox;
+
+    public function __construct($send = true, $sandbox = false)
     {
         $this->send = $send;
+        $this->sandbox = $sandbox;
         $key = Environment::getEnv('SS_MAILJET_KEY');
         $secret = Environment::getEnv('SS_MAILJET_SECRET');
         $this->service = new Client($key, $secret, $this->send, ['version' => 'v3.1']);
@@ -47,12 +53,18 @@ class MailjetMailer implements Mailer
             $this->addMail($mail);
         }
 
+        $body = [
+            'Messages' => $this->messages
+        ];
+
+        if ($this->sandbox) {
+            $body['SandboxMode'] = true;
+        }
+
         $result = $this->service->post(
             Resources::$Email,
             [
-                'body' => [
-                    'Messages' => $this->messages
-                ]
+                'body' => $body
             ]
         );
 
@@ -129,6 +141,17 @@ class MailjetMailer implements Mailer
     public function setSend($send)
     {
         $this->send = $send;
+
+        return $this;
+    }
+
+    /**
+     * @param bool|mixed $sandbox
+     * @return MailjetMailer
+     */
+    public function setSandbox($sandbox)
+    {
+        $this->sandbox = $sandbox;
 
         return $this;
     }
