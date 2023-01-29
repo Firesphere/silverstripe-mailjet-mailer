@@ -1,4 +1,4 @@
-# SilverStripe SendGrid Mailer 
+# Silverstripe Mailjet Mailer 
 
 Simple mailer module that uses Mailjet API to send emails.
 
