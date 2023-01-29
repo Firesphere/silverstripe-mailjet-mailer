@@ -11,5 +11,10 @@
   ],
   "require": {
     "mailjet/mailjet-apiv3-php": "^1.5.8"
+  },
+  "autoload": {
+    "psr-4": {
+      "Firesphere\\Mailjet\\": "src"
+    }
   }
 }
