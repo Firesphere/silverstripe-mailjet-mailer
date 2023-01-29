@@ -2,6 +2,7 @@
 
 namespace Firesphere\Mailjet\Service;
 
+use Firesphere\Mailjet\Exception\MailjetMailerException;
 use Mailjet\Client;
 use Mailjet\Resources;
 use SilverStripe\Control\Email\Email;
@@ -31,12 +32,20 @@ class MailjetMailer implements Mailer
      */
     protected $sandbox;
 
+    /**
+     * @param $send
+     * @param $sandbox
+     * @throws MailjetMailerException
+     */
     public function __construct($send = true, $sandbox = false)
     {
         $this->send = $send;
         $this->sandbox = $sandbox;
         $key = Environment::getEnv('SS_MAILJET_KEY');
         $secret = Environment::getEnv('SS_MAILJET_SECRET');
+        if (!$key || !$secret) {
+            throw new MailjetMailerException('Invalid credentials');
+        }
         $this->service = new Client($key, $secret, $this->send, ['version' => 'v3.1']);
     }
 
