@@ -21,11 +21,17 @@ class MailjetMailer implements Mailer
      */
     private $messages;
 
-    public function __construct()
+    /**
+     * @var bool
+     */
+    protected $send;
+
+    public function __construct($send = true)
     {
+        $this->send = $send;
         $key = Environment::getEnv('SS_MAILJET_KEY');
         $secret = Environment::getEnv('SS_MAILJET_SECRET');
-        $this->service = new Client($key, $secret, true, ['version' => 'v3.1']);
+        $this->service = new Client($key, $secret, $this->send, ['version' => 'v3.1']);
     }
 
     /**
@@ -114,5 +120,16 @@ class MailjetMailer implements Mailer
         }
 
         $this->messages[] = $msg;
+    }
+
+    /**
+     * @param bool|mixed $send
+     * @return MailjetMailer
+     */
+    public function setSend($send)
+    {
+        $this->send = $send;
+
+        return $this;
     }
 }

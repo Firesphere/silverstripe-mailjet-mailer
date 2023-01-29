@@ -39,6 +39,28 @@ $email->send();
 
 That should be all there is to it.
 
+### DEV usage
+
+If, in dev mode, you still want to use the Mailjet Mailer, but
+not want to send actual emails, set the `send` flag to `false`
+
+Via PHP:
+```php
+new \Firesphere\Mailjet\Service\MailjetMailer(false);
+```
+or
+```php
+$mailer = (new \Firesphere\Mailjet\Service\MailjetMailer())->setSend(false);
+```
+
+Via YML:
+```yaml
+SilverStripe\Core\Injector\Injector:
+  Firesphere\Mailjet\Service\MailjetMailer:
+    constructor:
+      - false
+```
+
 ## Advanced usage
 
 Mailjet allows to send multiple emails in a single request.
