@@ -8,9 +8,11 @@ use Mailjet\Resources;
 use SilverStripe\Control\Email\Email;
 use SilverStripe\Control\Email\Mailer;
 use SilverStripe\Core\Environment;
+use SilverStripe\Core\Extensible;
 
 class MailjetMailer implements Mailer
 {
+    use Extensible;
     /**
      * @var Client
      */
@@ -76,6 +78,8 @@ class MailjetMailer implements Mailer
                 'body' => $body
             ]
         );
+
+        $this->extend('onAfterSend', $email, $result);
 
         return $result->success() === true;
     }
