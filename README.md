@@ -1,5 +1,7 @@
 # Silverstripe Mailjet Mailer 
 
+[GPL v3 or later](LICENSE.md)
+
 Simple mailer module that uses Mailjet API to send emails.
 
 ## Requirements
