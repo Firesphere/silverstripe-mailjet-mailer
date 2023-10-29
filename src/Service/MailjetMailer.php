@@ -10,6 +10,9 @@ use SilverStripe\Control\Email\Mailer;
 use SilverStripe\Core\Environment;
 use SilverStripe\Core\Extensible;
 
+/**
+ * @package Firesphere\Mailjet\Mailer
+ */
 class MailjetMailer implements Mailer
 {
     use Extensible;

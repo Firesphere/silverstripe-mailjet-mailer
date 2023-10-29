@@ -2,7 +2,7 @@
   "name": "firesphere/mailjet-mailer",
   "description": "Mailjet Mailer for Silverstripe",
   "minimum-stability": "stable",
-  "license": "BSD-3-Clause",
+  "license": "GPL-3.0-or-later",
   "authors": [
     {
       "name": "firesphere",

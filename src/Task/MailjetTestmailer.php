@@ -5,6 +5,9 @@ namespace Firesphere\Mailjet\Task;
 use SilverStripe\Control\Email\Email;
 use SilverStripe\Dev\BuildTask;
 
+/**
+ * @package Firesphere\Mailjet\Mailer
+ */
 class MailjetTestmailer extends BuildTask
 {
     private static $segment = 'mailjet-test';
